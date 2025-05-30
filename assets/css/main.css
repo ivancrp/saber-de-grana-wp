@@ -1,3 +1,4 @@
+<?php
 /**
  * CSS compilado para Saber de Grana theme
  */
@@ -639,8 +640,7 @@ input, textarea, select {
   border-color: var(--primary);
 }
 
-.pagination .next,
-.pagination .prev {
+.pagination .next, .pagination .prev {
   padding: 0 0.75rem;
   width: auto;
 }
@@ -1016,11 +1016,14 @@ input, textarea, select {
 }
 
 .category-card {
-  background-color: white;
+  background-color: #fff;
   border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   overflow: hidden;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .category-card:hover {
@@ -1062,6 +1065,7 @@ input, textarea, select {
   color: #4b5563;
   font-size: 0.875rem;
   line-height: 1.5;
+  flex-grow: 1;
 }
 
 /* Ajustes de margens para conteúdo principal */
@@ -1417,8 +1421,7 @@ input, textarea, select {
   gap: 1.5rem;
 }
 
-.about-mission h3, 
-.about-vision h3 {
+.about-mission h3, .about-vision h3 {
   color: var(--primary);
   font-size: 1.25rem;
   font-weight: 600;
@@ -1549,3 +1552,4 @@ input, textarea, select {
     margin-bottom: 0.5rem;
   }
 } 
+

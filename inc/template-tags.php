@@ -352,22 +352,22 @@ function saberdegrana_social_sharing() {
     echo '<div class="social-sharing flex space-x-2">';
     
     // Facebook
-    echo '<a href="' . esc_url($facebook_url) . '" target="_blank" rel="noopener noreferrer" class="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700" aria-label="Compartilhar no Facebook">';
-    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">';
+    echo '<a href="' . esc_url($facebook_url) . '" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-900 text-white rounded-full hover:bg-gray-700" aria-label="Compartilhar no Facebook">';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">';
     echo '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>';
     echo '</svg>';
     echo '</a>';
     
     // Twitter
-    echo '<a href="' . esc_url($twitter_url) . '" target="_blank" rel="noopener noreferrer" class="p-2 bg-blue-400 text-white rounded-full hover:bg-blue-500" aria-label="Compartilhar no Twitter">';
-    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">';
+    echo '<a href="' . esc_url($twitter_url) . '" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-900 text-white rounded-full hover:bg-gray-700" aria-label="Compartilhar no Twitter">';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">';
     echo '<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>';
     echo '</svg>';
     echo '</a>';
     
     // LinkedIn
-    echo '<a href="' . esc_url($linkedin_url) . '" target="_blank" rel="noopener noreferrer" class="p-2 bg-blue-700 text-white rounded-full hover:bg-blue-800" aria-label="Compartilhar no LinkedIn">';
-    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">';
+    echo '<a href="' . esc_url($linkedin_url) . '" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-900 text-white rounded-full hover:bg-gray-700" aria-label="Compartilhar no LinkedIn">';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">';
     echo '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>';
     echo '<rect x="2" y="9" width="4" height="12"></rect>';
     echo '<circle cx="4" cy="4" r="2"></circle>';
@@ -375,15 +375,15 @@ function saberdegrana_social_sharing() {
     echo '</a>';
     
     // WhatsApp
-    echo '<a href="' . esc_url($whatsapp_url) . '" target="_blank" rel="noopener noreferrer" class="p-2 bg-green-500 text-white rounded-full hover:bg-green-600" aria-label="Compartilhar no WhatsApp">';
-    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">';
+    echo '<a href="' . esc_url($whatsapp_url) . '" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-900 text-white rounded-full hover:bg-gray-700" aria-label="Compartilhar no WhatsApp">';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">';
     echo '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>';
     echo '</svg>';
     echo '</a>';
     
     // Email
-    echo '<a href="' . esc_url($email_url) . '" class="p-2 bg-gray-500 text-white rounded-full hover:bg-gray-600" aria-label="Compartilhar por Email">';
-    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">';
+    echo '<a href="' . esc_url($email_url) . '" class="p-3 bg-gray-900 text-white rounded-full hover:bg-gray-700" aria-label="Compartilhar por Email">';
+    echo '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">';
     echo '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>';
     echo '<polyline points="22,6 12,13 2,6"></polyline>';
     echo '</svg>';

@@ -70,7 +70,8 @@
 
         <!-- Mobile menu (hidden by default) -->
         <div id="mobile-menu" class="md:hidden bg-primary hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3" style="
+    margin-left: 16px;">
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'primary',

@@ -48,9 +48,7 @@ get_header();
 
                 if ($featured_posts->have_posts()) :
                     while ($featured_posts->have_posts()) : $featured_posts->the_post();
-                        echo '<div class="card-wrapper">';
                         get_template_part('template-parts/content', 'card');
-                        echo '</div>';
                     endwhile;
                     wp_reset_postdata();
                 else:
@@ -61,9 +59,7 @@ get_header();
                     ));
                     
                     while ($recent_posts->have_posts()) : $recent_posts->the_post();
-                        echo '<div class="card-wrapper">';
                         get_template_part('template-parts/content', 'card');
-                        echo '</div>';
                     endwhile;
                     wp_reset_postdata();
                 endif;
