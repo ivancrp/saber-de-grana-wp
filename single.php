@@ -10,40 +10,19 @@ get_header();
 
 <main id="primary" class="site-main">
     <!-- Seção Hero para Posts -->
-    <section class="relative bg-gradient-to-r from-primary to-primary-dark pt-24 pb-32 md:pt-32 md:pb-24">
-        <?php
-        // Adicionando a imagem de fundo personalizada à seção hero
-        ?>
-        <div class="absolute inset-0 bg-[url('<?php echo esc_url(get_template_directory_uri() . '/assets/images/hero-background.jpeg'); ?>')] bg-cover bg-center mix-blend-overlay opacity-20"></div>
-        <?php
-        ?>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-4xl mx-auto">
-            <?php
-            /*
-            if (has_category()) {
-                echo '<div class="mb-4">';
-                $categories = get_the_category();
-                foreach ($categories as $category) {
-                    echo '<a href="' . esc_url(get_category_link($category->term_id)) . '" class="inline-block bg-secondary/80 text-white px-3 py-1 rounded-full text-sm font-medium mr-2 mb-2 hover:bg-secondary transition-colors">' . esc_html($category->name) . '</a>';
-                }
-                echo '</div>';
-            }
-            */
-            ?>
-            
-            <h1 class="entry-title text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                <?php the_title(); ?>
-            </h1>
-            
-            <?php if (has_excerpt()) : ?>
-                <p class="text-lg md:text-xl text-white/90 mt-6 mb-8">
-                    <?php the_excerpt(); ?>
-                </p>
-            <?php endif; ?>
-
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
         </div>
-        
-        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
+        <div class="hero-content">
+            <h1 class="hero-title"><?php the_title(); ?></h1>
+            <?php if (has_excerpt()) : ?>
+                <p class="hero-subtitle"><?php the_excerpt(); ?></p>
+            <?php endif; ?>
+        </div>
     </section>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12">
@@ -51,9 +30,9 @@ get_header();
 
         <?php while (have_posts()) : the_post(); ?>
         
-        <div class="single-post-layout">
+        <div class="single-post-layout" style="display: flex; gap: 3rem; align-items: flex-start; max-width: 80rem; margin: 0 auto;">
     <!-- Coluna da Esquerda: Conteúdo Principal do Post -->
-    <div class="main-post-content">
+    <div class="main-post-content" style="flex: 2 1 0; min-width: 0;">
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
             <header class="entry-header mb-8">
                 <?php
@@ -115,9 +94,6 @@ get_header();
                 <?php the_content(); ?>
             </div>
 
-            <div class="mb-4 text-lg font-semibold text-gray-800">Compartilhe:</div>
-            <?php saberdegrana_social_sharing(); ?>
-
             <footer class="entry-footer">
                 <!-- Navegação entre posts -->
                 <nav class="navigation post-navigation mb-8 pt-6 border-t border-gray-200">
@@ -143,14 +119,18 @@ get_header();
     </div>
 
     <!-- Coluna da Direita: Posts Relacionados -->
-    <div class="latest-posts-sidebar">
+    <div class="latest-posts-sidebar" style="flex: 1 1 320px; min-width: 280px; max-width: 400px;">
+        <div class="sidebar-element mb-6" style="margin-top: 0; padding-top: 0;">
+            <div class="mb-4 text-lg font-semibold text-gray-800">Compartilhe:</div>
+            <?php saberdegrana_social_sharing(); ?>
+        </div>
         <?php
         // Seção de Posts Relacionados
         $related_posts = saberdegrana_get_related_posts(get_the_ID(), 5);
 
         if ($related_posts->have_posts()) :
         ?>
-        <div class="related-posts mb-8 sticky top-8">
+        <div class="sidebar-element related-posts mb-8">
             <h3 class="text-xl font-bold text-gray-900 mb-4">Últimos Posts</h3>
             <div class="space-y-4">
                 <?php
@@ -168,7 +148,29 @@ get_header();
         <?php endwhile; ?>
     </div>
     
-    <!-- Newsletter -->
+    <!-- Sidebar mobile: só aparece no mobile -->
+    <div class="latest-posts-sidebar-mobile">
+        <div class="mb-6">
+            <div class="mb-4 text-lg font-semibold text-gray-800">Compartilhe:</div>
+            <?php saberdegrana_social_sharing(); ?>
+        </div>
+        <?php
+        $related_posts = saberdegrana_get_related_posts(get_the_ID(), 5);
+        if ($related_posts->have_posts()) :
+        ?>
+        <div class="related-posts mb-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Últimos Posts</h3>
+            <div class="space-y-4">
+                <?php
+                while ($related_posts->have_posts()) : $related_posts->the_post();
+                    get_template_part('template-parts/content', 'latest-post-item');
+                endwhile;
+                wp_reset_postdata();
+                ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
     <!-- Newsletter -->
     <div class="mt-8">
         <?php get_template_part('template-parts/content', 'newsletter'); ?>

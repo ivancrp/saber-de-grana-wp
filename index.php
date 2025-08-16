@@ -10,23 +10,22 @@ get_header();
 
 <main id="primary" class="site-main">
     <!-- Seção Hero -->
-    <section class="relative bg-gradient-to-r from-primary to-primary-dark pt-24 pb-16 md:pt-32 md:pb-24">
-        <div class="absolute inset-0 bg-[url('<?php echo esc_url(get_theme_mod('saberdegrana_hero_background', get_template_directory_uri() . '/assets/images/hero-bg.jpg')); ?>')] bg-cover bg-center opacity-20 mix-blend-overlay"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                    <?php echo esc_html(get_theme_mod('saberdegrana_hero_title', 'DICAS PRÁTICAS PARA CUIDAR DO SEU DINHEIRO')); ?>
-                </h1>
-                <p class="text-lg md:text-xl text-white/90 mb-8">
-                    <?php echo esc_html(get_theme_mod('saberdegrana_hero_subtitle', 'Aprenda a controlar suas finanças, investir com sabedoria e conquistar a liberdade financeira que você merece.')); ?>
-                </p>
-                <a href="<?php echo esc_url(get_theme_mod('saberdegrana_hero_button_url', '#featured-posts')); ?>" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-primary bg-secondary hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary">
-                    <?php echo esc_html(get_theme_mod('saberdegrana_hero_button_text', 'COMECE AGORA')); ?>
-                </a>
-            </div>
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
         </div>
-        
-        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                DICAS PRÁTICAS PARA CUIDAR DO SEU<br>
+                <span style="color: #ff6b35;">DINHEIRO</span>
+            </h1>
+            <p class="hero-subtitle">
+                Aprenda a controlar suas finanças, investir com sabedoria e conquistar a liberdade financeira que você merece.
+            </p>
+        </div>
     </section>
 
     <!-- Seção Posts em Destaque -->
@@ -37,7 +36,7 @@ get_header();
                 <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <?php
                 $featured_posts = new WP_Query(array(
                     'post_type'      => 'post',
@@ -75,7 +74,6 @@ get_header();
                 <h2 class="text-3xl font-bold text-gray-900"><?php echo esc_html(get_theme_mod('saberdegrana_categories_title', 'Categoria')); ?></h2>
                 <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
             </div>
-            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <?php
                 $categories = get_categories(array(
@@ -84,47 +82,34 @@ get_header();
                     'number'     => 4,
                     'hide_empty' => true,
                 ));
-                
                 foreach ($categories as $category) :
-                    $image_url = saberdegrana_get_category_image_url($category->term_id);
-                ?>
-                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" class="block category-card">
-                        <div class="category-card__header" style="background-image: url('<?php echo esc_url($image_url); ?>'); background-size: cover; background-position: center;">
-                            <div class="absolute inset-0 bg-primary bg-opacity-60"></div>
-                            <h3 class="category-card__title"><?php echo esc_html($category->name); ?></h3>
-                        </div>
-                        <div class="category-card__content">
-                            <p class="category-card__count"><?php echo esc_html($category->count); ?> posts</p>
-                            <p class="category-card__description"><?php echo esc_html(wp_trim_words($category->description, 15, '...')); ?></p>
-                        </div>
-                    </a>
-                <?php endforeach; ?>
+                    set_query_var('category_obj', $category);
+                    get_template_part('template-parts/content', 'category-card');
+                endforeach; ?>
             </div>
         </div>
     </section>
 
     <!-- Seção Sobre -->
-    <section class="py-16 bg-background about-section">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                <div class="about-text">
-                    <span class="accent-text"><?php echo esc_html(get_bloginfo('name')); ?></span>
-                    <h2 class="about-title"><?php echo esc_html(get_theme_mod('saberdegrana_about_title', 'Sobre')); ?></h2>
-                    
-                    <div class="about-description">
+    <section class="section-sobre">
+        <div class="container">
+            <div class="grid">
+                <div> <!-- This div will contain the text content -->
+                    <h2 class="titulo-small">SABER DE GRANA</h2>
+                    <h3 class="titulo-principal"><?php echo esc_html(get_theme_mod('saberdegrana_about_title', 'Sobre')); ?></h3>
+                    <p class="descricao">
                         <?php echo wp_kses_post(get_theme_mod('saberdegrana_about_content', 'Postamos análises e insights sobre o mercado financeiro e a melhor maneira de você administrar a sua renda.')); ?>
-                    </div>
-                    
-                    <div class="about-sections">
-                        <div class="about-mission">
-                            <h3>MISSÃO</h3>
+                    </p>
+                    <div> <!-- Container for Mission and Vision -->
+                        <div class="missao-visao">
+                            <h4>MISSÃO</h4>
                             <p>
                                 <?php echo esc_html(get_theme_mod('saberdegrana_mission_content', 'Contribuir para a melhor das aplicações financeiras, melhorando assim, o mercado financeiro de modo geral.')); ?>
                             </p>
                         </div>
                         
-                        <div class="about-vision">
-                            <h3>VISÃO</h3>
+                        <div class="missao-visao">
+                            <h4>VISÃO</h4>
                             <p>
                                 <?php echo esc_html(get_theme_mod('saberdegrana_vision_content', 'Apresentar sempre as melhores soluções e informações no mercado financeiro.')); ?>
                             </p>
@@ -132,23 +117,20 @@ get_header();
                     </div>
                 </div>
                 
-                <div class="about-image-container">
-                    <div class="about-image rounded-lg relative">
-                        <?php 
-                        // Usar uma imagem de mão segurando dinheiro como na referência
-                        $about_image = get_theme_mod('saberdegrana_about_image', get_template_directory_uri() . '/assets/images/money-hand.jpg');
-                        if (!$about_image) {
-                            $about_image = get_template_directory_uri() . '/assets/images/about-image.jpg';
-                        }
-                        ?>
-                        <img 
-                            src="<?php echo esc_url($about_image); ?>" 
-                            alt="<?php echo esc_attr(get_bloginfo('name')); ?>" 
-                            class="w-full h-full object-cover rounded-lg"
-                        />
-                    </div>
-                    <div class="quote-box">
-                        <blockquote class="italic">
+                <div class="imagem-container"> <!-- This div will contain the image and quote -->
+                    <img 
+                        src="<?php 
+                            // Usar uma imagem de mão segurando dinheiro como na referência
+                            $about_image = get_theme_mod('saberdegrana_about_image', get_template_directory_uri() . '/assets/images/money-hand.jpg');
+                            if (!$about_image) {
+                                $about_image = get_template_directory_uri() . '.\\assets\\images\\about-image.jpg';
+                            }
+                            echo esc_url($about_image);
+                        ?>" 
+                        alt="<?php echo esc_attr(get_bloginfo('name')); ?>" 
+                    />
+                    <div class="quote">
+                        <blockquote>
                             "<?php echo esc_html(get_theme_mod('saberdegrana_about_quote', 'Planeje, poupe e prospere: suas finanças, seu futuro!')); ?>"
                         </blockquote>
                     </div>
@@ -159,6 +141,7 @@ get_header();
 
     <!-- Seção Newsletter -->
     <?php get_template_part('template-parts/content', 'newsletter'); ?>
+    
 </main>
 
 <?php

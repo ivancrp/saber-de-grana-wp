@@ -8,20 +8,22 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('card'); ?>>
     <a href="<?php the_permalink(); ?>">
-        <?php if (has_post_thumbnail()) : ?>
-            <div class="card-image">
+        <div class="card-image">
+            <?php if (has_post_thumbnail()) : ?>
                 <?php the_post_thumbnail('medium', ['alt' => the_title_attribute('echo=0')]); ?>
-                <?php 
-                $categories = get_the_category();
-                if (!empty($categories)) : 
-                    $category = $categories[0];
-                ?>
-                <span class="badge">
-                    <?php echo esc_html($category->name); ?>
-                </span>
-                <?php endif; ?>
-            </div>
-        <?php endif; ?>
+            <?php else: ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/hero-background.jpg" alt="Imagem padrão" style="width:100%;height:200px;object-fit:cover;filter:brightness(0.85);">
+            <?php endif; ?>
+            <?php 
+            $categories = get_the_category();
+            if (!empty($categories)) : 
+                $category = $categories[0];
+            ?>
+            <span class="badge">
+                <?php echo esc_html($category->name); ?>
+            </span>
+            <?php endif; ?>
+        </div>
     </a>
     <div class="card-body">
         <a href="<?php the_permalink(); ?>">

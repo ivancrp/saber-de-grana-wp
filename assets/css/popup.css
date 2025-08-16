@@ -1,0 +1,631 @@
+/* ===== POPUP EXIT INTENT - SABER DE GRANA ===== */
+
+/* ===== RESET E BASE ===== */
+.exit-intent-popup * {
+    box-sizing: border-box;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.exit-intent-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exit-intent-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== OVERLAY ===== */
+.exit-intent-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* ===== CONTAINER DO POPUP ===== */
+.exit-intent-container {
+    position: relative;
+    z-index: 2;
+    width: 650px;
+    height: 400px;
+    max-width: 95vw;
+    max-height: 95vh;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.exit-intent-popup.show .exit-intent-container {
+    transform: scale(1) translateY(0);
+}
+
+/* ===== BOTÃO FECHAR ===== */
+.exit-intent-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.exit-intent-close:hover {
+    background: #ffffff;
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.exit-intent-close .close-icon {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    line-height: 1;
+    transition: color 0.3s ease;
+}
+
+.exit-intent-close:hover .close-icon {
+    color: #1f2937;
+}
+
+/* ===== CONTEÚDO PRINCIPAL ===== */
+.exit-intent-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== HEADER ===== */
+.exit-intent-header {
+    background: linear-gradient(135deg, #0e5c65 0%, #0d4f4c 100%);
+    padding: 1.5rem 1.5rem 1rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.exit-intent-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.exit-intent-header h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 0.25rem 0;
+    color: #ffffff;
+    line-height: 1.2;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.exit-intent-header h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+    color: #e0f2f1;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+    opacity: 0.9;
+}
+
+/* ===== BODY ===== */
+.exit-intent-body {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    background: linear-gradient(135deg, #f8fbfb 0%, #ffffff 100%);
+}
+
+.exit-intent-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--popup-bg-image, url('../images/popup.jpg'));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
+    z-index: 0;
+}
+
+/* ===== CONTAINER DO FORMULÁRIO ===== */
+.exit-intent-form-container {
+    flex: 1;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: 0;
+    width: 100%;
+}
+
+/* ===== FORMULÁRIO ===== */
+.exit-intent-form {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+   
+}
+
+.exit-intent-form .form-group {
+    position: relative;
+}
+
+.exit-intent-form input {
+    width: 280px;
+    padding: 0.875rem 0.75rem;
+    font-size: 0.875rem;
+    font-family: inherit;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    background: #ffffff;
+    color: #1f2937;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.exit-intent-form input:focus {
+    outline: none;
+    border-color: #0e5c65;
+    box-shadow: 0 0 0 3px rgba(14, 92, 101, 0.1);
+    transform: translateY(-1px);
+}
+
+.exit-intent-form input:invalid:not(:placeholder-shown),
+.exit-intent-form input.error {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.exit-intent-form input.error:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.exit-intent-form input::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+.exit-intent-form button {
+    width: 280px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    background: #000000;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.exit-intent-form button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.exit-intent-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    background: #1a1a1a;
+}
+
+.exit-intent-form button:hover::before {
+    left: 100%;
+}
+
+.exit-intent-form button:active {
+    transform: translateY(0);
+}
+
+.exit-intent-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.exit-intent-form button .button-text {
+    transition: opacity 0.3s ease;
+}
+
+.exit-intent-form button .button-loading {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.exit-intent-form button.loading .button-text {
+    opacity: 0;
+}
+
+.exit-intent-form button.loading .button-loading {
+    display: block;
+    opacity: 1;
+}
+
+/* ===== MENSAGENS ===== */
+.message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid transparent;
+    animation: messageSlideIn 0.3s ease-out;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message.success {
+    background: #ecfdf5;
+    color: #065f46;
+    border-color: #a7f3d0;
+}
+
+.message.error {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+/* ===== FOOTER ===== */
+.exit-intent-footer {
+    background: linear-gradient(135deg, #0e5c65 0%, #0d4f4c 100%);
+    padding: 1rem 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #ffffff;
+    line-height: 1.4;
+    position: relative;
+    overflow: hidden;
+}
+
+.exit-intent-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain2" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain2)"/></svg>');
+    opacity: 0.2;
+}
+
+.exit-intent-footer span {
+    background: linear-gradient(135deg, #ffb200 0%, #ffa000 100%);
+    color: #1f2937;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(255, 178, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+    .exit-intent-container {
+        width: 90vw;
+        height: auto;
+        max-height: 90vh;
+    }
+    
+    .exit-intent-form-container {
+        padding: 1.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .exit-intent-popup {
+        padding: 0.5rem;
+    }
+    
+    .exit-intent-container {
+        width: 95vw;
+        height: auto;
+        max-height: 95vh;
+        border-radius: 1rem;
+    }
+    
+    .exit-intent-header {
+        padding: 1.25rem 1rem 0.75rem;
+    }
+    
+    .exit-intent-form-container {
+        padding: 1.25rem 1rem;
+    }
+    
+    .exit-intent-footer {
+        padding: 0.75rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .exit-intent-close {
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    .exit-intent-close .close-icon {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .exit-intent-container {
+        width: 98vw;
+        height: auto;
+        max-height: 98vh;
+    }
+    
+    .exit-intent-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .exit-intent-header h3 {
+        font-size: 1rem;
+    }
+    
+    .exit-intent-form input,
+    .exit-intent-form button {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    .exit-intent-form button {
+        font-size: 0.875rem;
+    }
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes popupSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== ESTADOS DE CARREGAMENTO ===== */
+.exit-intent-form button.loading {
+    position: relative;
+    color: transparent;
+}
+
+.exit-intent-form button.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: -0.75rem 0 0 -0.75rem;
+    border: 2px solid transparent;
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+.exit-intent-popup:focus-within {
+    outline: none;
+}
+
+.exit-intent-form input:focus-visible {
+    outline: 2px solid #0e5c65;
+    outline-offset: 2px;
+}
+
+.exit-intent-form button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* ===== ESTADOS DE HOVER PARA TOUCH ===== */
+@media (hover: none) {
+    .exit-intent-close:hover {
+        transform: none;
+    }
+    
+    .exit-intent-form button:hover {
+        transform: none;
+    }
+    
+    .exit-intent-form input:focus {
+        transform: none;
+    }
+}
+
+/* ===== REDUÇÃO DE MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    .exit-intent-popup,
+    .exit-intent-container,
+    .exit-intent-close,
+    .exit-intent-form input,
+    .exit-intent-form button,
+    .message {
+        transition: none;
+        animation: none;
+    }
+    
+    .exit-intent-form button::before {
+        display: none;
+    }
+}
+
+/* ===== PAINEL DE TESTE PARA ADMINISTRADORES ===== */
+.admin-test-panel {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: #0D4F4C;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    min-width: 200px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.admin-test-panel .panel-header {
+    margin-bottom: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 8px;
+}
+
+.admin-test-panel .panel-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-test-panel button {
+    background: #26A69A;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.admin-test-panel button:hover {
+    background: #1f8a7f;
+    transform: translateY(-1px);
+}
+
+.admin-test-panel button.reset {
+    background: #E0F2F1;
+    color: #0D4F4C;
+}
+
+.admin-test-panel button.reset:hover {
+    background: #b2dfdb;
+}
+
+.admin-test-panel .shortcuts {
+    margin-top: 8px;
+    font-size: 10px;
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* ===== ESTADOS DE SUCESSO DO PAINEL ===== */
+.admin-test-panel button.success {
+    background: #4CAF50;
+    animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+} 
